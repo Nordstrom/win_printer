@@ -1,4 +1,4 @@
-RSpec.describe 'win_printer::default' do
+RSpec.describe 'testsetup::default' do
   include ChefRun
 
   it 'converges successfully' do

@@ -1,0 +1,9 @@
+DEPENDENCIES
+  win_printer
+    path: .
+    metadata: true
+
+GRAPH
+  win_printer (0.1.0)
+    wse_powershell_helper (~> 0.1)
+  wse_powershell_helper (0.1.2)
