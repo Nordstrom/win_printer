@@ -2,26 +2,23 @@
 
 ## Description
 
-...
+This LWRP cookbook is designed to support Windows print server management for these functions:
 
-## Usage
+* print queue backups
 
-Add 'recipe[win_printer::default]' to your node's run-list.
+## Sample Usage
 
-## Recipes
+### Create a local filesystem backup of the DHCP server DB.  Requires DHCPServer to be already installed.
 
-### default
+    win_printer_queuebackup 'Ensure queue is recently backed up to local filesystem' do
+      action :config
+      location 'E:\\SystemStateBackup\\PrintQueueBackup.bak' # string
+      activity :export # default
+      maxage 16 # integer for number of hours.  default is 16
+    end
 
-The default recipe ...
-
-## Attributes
-
-The attributes defined by this recipe are organized under the
-`node['win_printer']` namespace.
-
-Attribute | Description | Type   | Default
-----------|-------------|--------|--------
-...       | ...         | String | ...
+* Please note this location should be included as part of regular filesystem backups
+* backup files older than maxage will trigger a new backup
 
 ## Development
 
