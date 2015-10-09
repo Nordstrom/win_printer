@@ -18,6 +18,8 @@ module Windows
     def current_printqueue_backup
       location = new_resource.location
       maxage = new_resource.maxage
+      # force maxage to 1 if a zero value is supplied
+      maxage = 1 if maxage = 0
       maxage_seconds = maxage * 3600
       if ::File.exist?(location)
         filemodtime = ::File.mtime(location)
