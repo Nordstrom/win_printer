@@ -1,5 +1,9 @@
 # Revision History for win_printer
 
+## 0.1.5
+
+* bugfix conditional.  library update to force maxage to 1 if 0 is given
+
 ## 0.1.4
 
 * bugfix conditional.  library update to force maxage to 1 if 0 is given
