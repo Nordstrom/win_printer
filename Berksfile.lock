@@ -1,9 +1,13 @@
 DEPENDENCIES
+  testsetup
+    path: test/fixtures/cookbooks/testsetup
   win_printer
     path: .
     metadata: true
 
 GRAPH
-  win_printer (0.1.0)
+  testsetup (0.0.0)
+    win_printer (>= 0.0.0)
+  win_printer (0.1.1)
     wse_powershell_helper (~> 0.1)
   wse_powershell_helper (0.1.2)

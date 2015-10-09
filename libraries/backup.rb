@@ -2,7 +2,7 @@
 
 module Windows
   # helpers for the dhcp_server backup LWRP
-  module Printerqueuebackup
+  module Printerbackup
     def config_exists(*)
       activity = new_resource.activity
       Chef::Log.info('Checking for current print server backup status')
@@ -36,7 +36,7 @@ module Windows
       begin
         File.delete(location) if File.exist?(location)
       rescue Errno::ENOENT
-        Chef::Log.info("win_printer_queuebackup LWRP failed to delete pre-existing backup file: #{location}...")
+        raise("win_printer_queuebackup LWRP failed to delete pre-existing backup file: #{location}...")
       end
       # export the printer queues to the file
       queueexportcmd = shell_out!("printbrm -B -S %computername% -F \"#{location}\" -O force")

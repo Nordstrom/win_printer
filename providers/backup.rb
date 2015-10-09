@@ -6,9 +6,7 @@
 
 include Chef::Mixin::ShellOut
 include Chef::Mixin::PowershellOut
-include Windows::Printerqueuebackup
-include Windows::Helper
-Chef::Recipe.send(:include, Windows::Helper)
+include Windows::Printerbackup
 
 # Support whyrun
 def whyrun_supported?
@@ -29,7 +27,7 @@ action :config do
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::WinPrinterQueuebackup.new(@new_resource.name)
+  @current_resource = Chef::Resource::WinPrinterBackup.new(@new_resource.name)
   @current_resource.location(@new_resource.location)
   @current_resource.activity(@new_resource.activity)
   @current_resource.maxage(@new_resource.maxage)
