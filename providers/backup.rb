@@ -21,7 +21,6 @@ action :config do
   else
     converge_by("Create #{@new_resource}") do
       export_print_queues
-      new_resource.updated_by_last_action true
     end
   end
 end
