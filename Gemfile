@@ -7,7 +7,7 @@ gem 'pry-rescue', '~> 1.4'
 gem 'pry-stack_explorer', '~> 0.4'
 gem 'berkshelf', '~> 3.3'
 gem 'guard', '~> 2.12'
-gem 'rubocop', '= 0.33.0'
+gem 'rubocop', '= 0.31.0'
 gem 'guard-rubocop', '~> 1.1'
 gem 'foodcritic', '~> 4.0'
 gem 'guard-foodcritic', '~> 1.1'
@@ -16,6 +16,7 @@ gem 'kitchen-vagrant', '~> 0.16'
 gem 'chefspec', '~> 4.1'
 gem 'guard-rspec', '~> 4.5'
 gem 'ci_reporter_rspec', '~> 1.0'
+gem 'winrm-transport', '~> 1.0'
 
 # load local overrides
 gemfile_dir = File.absolute_path(File.join('.', 'lib', 'gemfile'))

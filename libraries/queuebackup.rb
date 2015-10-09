@@ -32,17 +32,24 @@ module Windows
 
     def export_print_queues
       location = new_resource.location
-      dhcpexportcmd = shell_out!(" #{location} ")
+      # ensure old file doesn't exist, otherwise printbrm.exe will fail
+      begin
+        File.delete(location) if File.exist?(location)
+      rescue Errno::ENOENT
+        Chef::Log.info("win_printer_queuebackup LWRP failed to delete pre-existing backup file: #{location}...")
+      end
+      # export the printer queues to the file
+      queueexportcmd = shell_out!("printbrm -B -S %computername% -F \"#{location}\" -O force")
       Chef::Log.info("win_printer_queuebackup LWRP successfully exported print queues to #{location}...")
-      dhcpexportcmd.stderr.empty? && dhcpexportcmd.stdout.include?('Command completed successfully')
+      queueexportcmd.stderr.empty? && queueexportcmd.stdout.include?('Successfully finished operation')
     end
 
     def import_printqueue_backup
       location = new_resource.location
       queuebackupexist = ::File.exist?(location)
       fail("No print queue backup exists in #{location} to use for win_printer_queuebackup import activity") unless queuebackupexist
-      queueimportcmd = shell_out!(" #{location} ")
-      queueimportcmd.stderr.empty? && queueimportcmd.stdout.include?('Command completed successfully')
+      queueimportcmd = shell_out!("printbrm -R -S %computername% -F #{location} -O force -P all")
+      queueimportcmd.stderr.empty? && queueimportcmd.stdout.include?('Successfully finished operation')
     end
   end
 end
