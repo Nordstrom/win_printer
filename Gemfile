@@ -16,7 +16,6 @@ gem 'kitchen-vagrant', '~> 0.16'
 gem 'chefspec', '~> 4.1'
 gem 'guard-rspec', '~> 4.5'
 gem 'ci_reporter_rspec', '~> 1.0'
-gem 'faraday', '= 0.9.1'
 
 # load local overrides
 gemfile_dir = File.absolute_path(File.join('.', 'lib', 'gemfile'))
