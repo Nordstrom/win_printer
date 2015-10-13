@@ -10,7 +10,7 @@ This LWRP cookbook is designed to support Windows print server management for th
 
 ### Create a local filesystem backup of the DHCP server DB.  Requires DHCPServer to be already installed.
 
-    win_printer_queuebackup 'Ensure queue is recently backed up to local filesystem' do
+    win_printer_backup 'Ensure queue is recently backed up to local filesystem' do
       action :config # default
       location 'E:\\SystemStateBackup\\PrintQueueBackup.bak' # string
       activity :export # string.  default = 'export'
