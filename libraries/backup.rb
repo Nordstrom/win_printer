@@ -19,7 +19,7 @@ module Windows
       # force maxage to 1 if a zero value is supplied
       maxage = 1 if maxage <= 0
       maxage_seconds = maxage * 3600
-      if File.file?(location)
+      if ::File.file?(location)
         filemodtime = ::File.mtime(location)
         Chef::Log.info("win_printer_backup found file modification time #{filemodtime}")
       else
