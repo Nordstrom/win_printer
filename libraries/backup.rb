@@ -17,9 +17,9 @@ module Windows
       location = new_resource.location
       maxage = new_resource.maxage
       # force maxage to 1 if a zero value is supplied
-      maxage = 1 if maxage == 0
+      maxage = 1 if maxage <= 0
       maxage_seconds = maxage * 3600
-      if ::File.exist?(location)
+      if File.file?(location)
         filemodtime = ::File.mtime(location)
         Chef::Log.info("win_printer_backup found file modification time #{filemodtime}")
       else
