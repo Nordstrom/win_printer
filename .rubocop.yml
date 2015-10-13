@@ -34,5 +34,9 @@ Metrics/LineLength:
     - '**/test/integration/default/serverspec/recipes/default_spec.rb'
     - '**/libraries/backup.rb'
 
+Metrics/AbcSize:
+  Exclude:
+    - '**/libraries/backup.rb'
+
 Metrics/MethodLength:
   Max: 20

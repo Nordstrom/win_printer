@@ -8,7 +8,7 @@ module Windows
       Chef::Log.info('Checking for current print server backup status')
       if activity.eql?('export')
         current_printqueue_backup == true
-      if activity.eql?('import')
+      elsif activity.eql?('import')
         import_printqueue_backup
       end
     end
