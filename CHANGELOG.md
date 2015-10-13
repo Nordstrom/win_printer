@@ -1,5 +1,9 @@
 # Revision History for win_printer
 
+## 1.0.0
+
+* initial release.  updated README.
+
 ## 0.1.6x
 
 * version bumps testing broken restaurant pipeline
