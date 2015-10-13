@@ -1,5 +1,9 @@
 # Revision History for win_printer
 
+## 1.0.3
+
+* bugfix file age detection logic
+
 ## 1.0.2
 
 * updated README.
