@@ -7,15 +7,9 @@ module Windows
       activity = new_resource.activity
       Chef::Log.info('Checking for current print server backup status')
       if activity.eql?('export')
-        if current_printqueue_backup == true
-          Chef::Log.info('Chef detected current print queue backup')
-        else
-          Chef::Log.info('Chef did not detect current print queue backup')
-          export_print_queues
-        end
-      elsif activity.eql?('import')
+        current_printqueue_backup == true
+      if activity.eql?('import')
         import_printqueue_backup
-        Chef::Log.info('Chef completed print server backup to filesystem')
       end
     end
 
