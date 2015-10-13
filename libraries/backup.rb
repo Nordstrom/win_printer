@@ -30,7 +30,7 @@ module Windows
       # max age of file before another backup is 16 hours
       cutofftime = now - maxage_seconds
       Chef::Log.info("win_printer_backup file age cutoff time #{cutofftime}")
-      Chef::Log.info("win_printer_backup file comparison result: #{filemodtime < cutofftime}")
+      Chef::Log.info("win_printer_backup current file test comparison result: #{filemodtime < cutofftime}")
       filemodtime < cutofftime
     end
 
