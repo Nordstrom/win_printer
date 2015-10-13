@@ -1,8 +1,12 @@
 # Revision History for win_printer
 
+## 1.0.2
+
+* updated README.
+
 ## 1.0.1
 
-* initial release.  updated README.
+* initial release.  updated README and logging statements
 
 ## 0.1.6x
 

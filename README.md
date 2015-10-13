@@ -13,7 +13,7 @@ This LWRP cookbook is designed to support Windows print server management for th
     win_printer_backup 'Ensure queue is recently backed up to local filesystem' do
       action :config # default
       location 'E:\\SystemStateBackup\\PrintQueueBackup.bak' # string
-      activity :export # string.  default = 'export'
+      activity 'export' # string.  default = 'export'
       maxage 16 # integer number of hours.  default = 16
     end
 

@@ -23,12 +23,15 @@ module Windows
       maxage_seconds = maxage * 3600
       if ::File.exist?(location)
         filemodtime = ::File.mtime(location)
+        Chef::Log.info("win_printer_backup found file modification time #{filemodtime}")
       else
         filemodtime = Time.now
+        Chef::Log.info("win_printer_backup found no file, set modification time as #{filemodtime}")
       end
       now = Time.now
       # max age of file before another backup is 16 hours
       cutofftime = now - maxage_seconds
+      Chef::Log.info("win_printer_backup file age cutoff time #{cutofftime}")
       filemodtime < cutofftime
     end
 

@@ -17,7 +17,7 @@ use_inline_resources
 
 action :config do
   if @current_resource.exists
-    Chef::Log.info('Chef dhcp_server_backup found current DHCP backup - Nothing to do')
+    Chef::Log.info('Chef win_printer_backup found current print server backup - Nothing to do')
   else
     converge_by("Create #{@new_resource}") do
       export_print_queues
