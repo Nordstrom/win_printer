@@ -44,7 +44,8 @@ module Windows
       end
       # export the printer queues to the file
       exportcmd = shell_out("C:\\Windows\\System32\\spool\\tools\\printbrm.exe -B -S %computername% -F \"#{location}\" -O force", returns: [0])
-      Chef::Log.info("win_printer_queuebackup LWRP successfully exported print queues to #{location}...")
+      Chef::Log.info("win_printer_queuebackup LWRP reports success: #{location}")
+      Chef::Log.info("win_printer_queuebackup LWRP reports success: #{exportcmd.stdout}")
       exportcmd.stderr.empty? && exportcmd.stdout.include?('Successfully finished operation')
     end
 
