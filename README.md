@@ -6,6 +6,8 @@ This LWRP cookbook is designed to support Windows print server management for th
 
 * print queue backups to a filesystem
 
+This LWRP uses the printbrm.exe utility from MSFT to do the work of exporting print server data.
+
 ## Sample Usage
 
 ### Create a local filesystem backup of the DHCP server DB.  Requires DHCPServer to be already installed.
@@ -19,6 +21,10 @@ This LWRP cookbook is designed to support Windows print server management for th
 
 * Please note this location should be included as part of regular filesystem backups
 * backup files older than maxage will trigger a new backup
+
+## WARNING
+
+* Do not use spaces in the filename or file path for your location attribute.  The printbrm utility cannot tolerate double-quotes around the file path.
 
 ## Author
 

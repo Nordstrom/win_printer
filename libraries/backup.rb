@@ -41,8 +41,8 @@ module Windows
       ::File.delete(location) if ::File.file?(location)
       # export the printer queues to the file
       exportcmd = shell_out("C:\\Windows\\System32\\spool\\tools\\printbrm.exe -B -S \\\\%computername% -F #{location}", returns: [0])
-      Chef::Log.info("win_printer_queuebackup LWRP backup location: #{location}")
-      Chef::Log.info("win_printer_queuebackup LWRP backup result: #{exportcmd.stdout}")
+      Chef::Log.info("win_printer_backup LWRP backup location: #{location}")
+      Chef::Log.info("win_printer_backup LWRP backup result: #{exportcmd.stdout}")
       exportcmd.stderr.empty? && exportcmd.stdout.include?('Successfully finished operation')
     end
 
@@ -51,6 +51,8 @@ module Windows
       backupexist = ::File.file?(location)
       fail("No print queue backup exists in #{location} to use for win_printer_queuebackup import activity") unless backupexist
       importcmd = shell_out!("C:\\Windows\\System32\\spool\\tools\\printbrm.exe -R -S \\\\%computername% -F #{location} -O force -P all", returns: [0])
+      Chef::Log.info("win_printer_backup LWRP import location: #{location}")
+      Chef::Log.info("win_printer_backup LWRP import result: #{importcmd.stdout}")
       importcmd.stderr.empty? && importcmd.stdout.include?('Successfully finished operation')
     end
   end
