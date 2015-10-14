@@ -17,7 +17,13 @@ use_inline_resources
 
 action :config do
   if @current_resource.exists
-    Chef::Log.info('Chef win_printer_backup found current print server backup - Nothing to do')
+    if @current_resource.activity == 'export'
+      Chef::Log.info('Chef win_printer_backup found current print server backup - Nothing to do')
+    elsif @current_resource.activity == 'import'
+      Chef::Log.info('Chef win_printer_backup LWRP succesfully impored print server backup')
+    else
+      fail 'Chef win_printer_backup LWRP cannot process the supplied activity attribute'
+    end
   else
     converge_by("Create #{@new_resource}") do
       export_print_queues
