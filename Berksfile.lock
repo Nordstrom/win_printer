@@ -8,6 +8,6 @@ DEPENDENCIES
 GRAPH
   testsetup (0.0.0)
     win_printer (>= 0.0.0)
-  win_printer (1.0.504)
+  win_printer (1.0.505)
     wse_powershell_helper (~> 0.1)
   wse_powershell_helper (0.1.2)
