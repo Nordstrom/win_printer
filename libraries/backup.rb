@@ -23,7 +23,7 @@ module Windows
         filemodtime = ::File.mtime(location)
         Chef::Log.info("win_printer_backup found file modification time #{filemodtime}")
       else
-        filemodtime = Time.now
+        filemodtime = Time.now - 86_400
         Chef::Log.info("win_printer_backup found no file, set modification time as #{filemodtime}")
       end
       now = Time.now
