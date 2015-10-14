@@ -31,17 +31,14 @@ module Windows
       cutofftime = now - maxage_seconds
       Chef::Log.info("win_printer_backup file age cutoff time #{cutofftime}")
       Chef::Log.info("win_printer_backup current file test comparison result: #{filemodtime < cutofftime}")
+      Chef::Log.info("win_printer_backup current file age result: #{filemodtime - cutofftime}")
       filemodtime < cutofftime
     end
 
     def export_print_queues
       location = new_resource.location
       # ensure old file doesn't exist, otherwise printbrm.exe will fail
-      begin
-        File.delete(location) if ::File.file?(location)
-      rescue Errno::ENOENT
-        raise("win_printer_queuebackup LWRP failed to delete pre-existing backup file: #{location}...")
-      end
+      ::File.delete(location) if ::File.file?(location)
       # export the printer queues to the file
       exportcmd = shell_out("C:\\Windows\\System32\\spool\\tools\\printbrm.exe -B -S %computername% -F \"#{location}\" -O force", returns: [0])
       Chef::Log.info("win_printer_queuebackup LWRP reports success: #{location}")
