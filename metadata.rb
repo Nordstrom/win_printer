@@ -7,6 +7,6 @@ maintainer       'EPG WSE Team, Nordstrom, Inc.'
 maintainer_email 'itwseall@nordstrom.com'
 license          'all_rights'
 description      'Installs/Configures win_printer'
-version          '1.0.45'
+version          '1.0.46'
 
 depends 'wse_powershell_helper', '~> 0.1'
