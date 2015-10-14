@@ -38,7 +38,7 @@ module Windows
       location = new_resource.location
       # ensure old file doesn't exist, otherwise printbrm.exe will fail
       begin
-        File.delete(location) if File.exist?(location)
+        File.delete(location) if ::File.file?(location)
       rescue Errno::ENOENT
         raise("win_printer_queuebackup LWRP failed to delete pre-existing backup file: #{location}...")
       end
@@ -50,7 +50,7 @@ module Windows
 
     def import_printqueue_backup
       location = new_resource.location
-      queuebackupexist = ::File.exist?(location)
+      queuebackupexist = ::File.file?((location)
       fail("No print queue backup exists in #{location} to use for win_printer_queuebackup import activity") unless queuebackupexist
       queueimportcmd = shell_out!("printbrm -R -S %computername% -F #{location} -O force -P all")
       queueimportcmd.stderr.empty? && queueimportcmd.stdout.include?('Successfully finished operation')
