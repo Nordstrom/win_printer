@@ -31,7 +31,7 @@ module Windows
       cutofftime = now - maxage_seconds
       Chef::Log.info("win_printer_backup file age cutoff time #{cutofftime}")
       Chef::Log.info("win_printer_backup current file test comparison result: #{filemodtime > cutofftime}")
-      Chef::Log.info("win_printer_backup current file age comparison result: #{filemodtime - cutofftime}")
+      Chef::Log.info("win_printer_backup current file age comparison result: #{filemodtime - cutofftime} seconds")
       filemodtime > cutofftime
     end
 
@@ -40,7 +40,7 @@ module Windows
       # ensure old file doesn't exist, otherwise printbrm.exe will fail
       ::File.delete(location) if ::File.file?(location)
       # export the printer queues to the file
-      exportcmd = shell_out("C:\\Windows\\System32\\spool\\tools\\printbrm.exe -B -S %computername% -F \"#{location}\" -O force", returns: [0])
+      exportcmd = shell_out("C:\\Windows\\System32\\spool\\tools\\printbrm.exe -B -S \\\\%computername% -F \"#{location}\" -O force", returns: [0])
       Chef::Log.info("win_printer_queuebackup LWRP reports success: #{location}")
       Chef::Log.info("win_printer_queuebackup LWRP reports success: #{exportcmd.stdout}")
       exportcmd.stderr.empty? && exportcmd.stdout.include?('Successfully finished operation')
@@ -50,7 +50,7 @@ module Windows
       location = new_resource.location
       backupexist = ::File.file?(location)
       fail("No print queue backup exists in #{location} to use for win_printer_queuebackup import activity") unless backupexist
-      importcmd = shell_out!("C:\\Windows\\System32\\spool\\tools\\printbrm.exe -R -S %computername% -F \"#{location}\" -O force -P all", returns: [0])
+      importcmd = shell_out!("C:\\Windows\\System32\\spool\\tools\\printbrm.exe -R -S \\\\%computername% -F \"#{location}\" -O force -P all", returns: [0])
       importcmd.stderr.empty? && importcmd.stdout.include?('Successfully finished operation')
     end
   end
