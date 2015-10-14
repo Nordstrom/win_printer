@@ -32,7 +32,7 @@ module Windows
       Chef::Log.info("win_printer_backup file age cutoff time #{cutofftime}")
       Chef::Log.info("win_printer_backup current file test comparison result: #{filemodtime < cutofftime}")
       Chef::Log.info("win_printer_backup current file age result: #{filemodtime - cutofftime}")
-      filemodtime < cutofftime
+      filemodtime > cutofftime
     end
 
     def export_print_queues
