@@ -10,7 +10,7 @@ This LWRP uses the printbrm.exe utility from MSFT to do the export/import work p
 
 ## Sample Usage
 
-### Create a local file system backup of the DHCP server DB.  Requires DHCPServer to be already installed.
+### Create a local file system backup of the print server queues and drivers.
 
     win_printer_backup 'Ensure queue is recently backed up to local file system' do
       action :config # default

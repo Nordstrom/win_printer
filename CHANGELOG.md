@@ -1,9 +1,12 @@
 # Revision History for win_printer
 
+## 1.1.1
+
+* updated README
+
 ## 1.1.0
 
 * cookbook working as-advertised
-
 
 ## 1.0.3* through 1.0.5*
 
