@@ -24,7 +24,9 @@ This LWRP uses the printbrm.exe utility from MSFT to do the export/import work p
 
 ## WARNING
 
-    Do not use spaces in the filename or file path for your location attribute.  The printbrm.exe utility cannot tolerate double-quotes around the file path.
+    Do not use spaces in the filename or file path for your location attribute.  The printbrm.exe utility also cannot tolerate double-quotes around the file path (unlike most MSFT utilities).
+
+	    A regex check has been added to the location attribute that requires all non-whitespace characters in the string, or an error will be raised, thus killing the chef run.
 
 ## Author
 
