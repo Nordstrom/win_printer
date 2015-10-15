@@ -1,8 +1,13 @@
 # Revision History for win_printer
 
-## 1.0.4*
+## 1.1.0
 
-* bugfix file age detection logic
+* cookbook working as-advertised
+
+
+## 1.0.3* through 1.0.5*
+
+* bugfix file age detection logic, general logic and idempotency fixes
 
 ## 1.0.2
 
