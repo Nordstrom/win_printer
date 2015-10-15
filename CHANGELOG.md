@@ -1,6 +1,6 @@
 # Revision History for win_printer
 
-## 1.2.0
+## 1.2.0 and 1.2.1
 
 * added regex check to require location attribute to require no spaces in path, and updated README
 

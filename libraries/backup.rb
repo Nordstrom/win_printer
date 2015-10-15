@@ -5,6 +5,7 @@ module Windows
   module Printerbackup
     def config_exists(*)
       activity = new_resource.activity
+      validate_location
       Chef::Log.info('Checking for current print server backup status')
       if activity.eql?('export')
         current_printqueue_backup == true
@@ -33,6 +34,15 @@ module Windows
       Chef::Log.info("win_printer_backup current file test comparison result: #{filemodtime > cutofftime}")
       Chef::Log.info("win_printer_backup current file age comparison result: #{filemodtime - cutofftime} seconds")
       filemodtime > cutofftime
+    end
+
+    def validate_location
+      location = new_resource.location
+      if location =~ /^\S*$/
+        Chef::Log.info('win_printer_backup validated there are no spaces in the location value.')
+      else
+        fail 'win_printer_backup found spaces in the location value.  Terminating Chef run.'
+      end
     end
 
     def export_print_queues
