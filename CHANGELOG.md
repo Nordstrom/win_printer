@@ -1,5 +1,9 @@
 # Revision History for win_printer
 
+## 1.3.1
+
+* updated metadata.rb file with source/issues urls
+
 ## 1.3.0
 
 * updated README and added the LICENSE to the cookbook
